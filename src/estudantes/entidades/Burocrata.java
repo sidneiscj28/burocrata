@@ -13,7 +13,7 @@ import professor.entidades.*;
  * Os únicos métodos públicos devem ser: getEstresse, trabalhar, estressar e
  * estressarMuito.
  * 
- * @author coloque os nomes dos autores aqui
+ * @author Rafaela de Menezes e Sidnei Correia Junior
  */
 public class Burocrata {
     private int estresse = 0;
