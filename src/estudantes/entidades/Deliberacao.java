@@ -1,25 +1,23 @@
 package estudantes.entidades;
 
+import estudantes.entidades.DocumentoAdministrativo;
 import professor.entidades.CodigoCurso;
 
-public class DocumentoAcademico extends Documento{
-    private long autenticacao;
+public class Deliberacao extends  DocumentoAdministrativo{
+    private String texto;
 
-    public DocumentoAcademico(
+    public Deliberacao(
         String criador, 
         CodigoCurso codigo, 
         int paginas,
-        long autenticacao
+        String texto
     ){
         super(criador, codigo, paginas);
-        this.autenticacao = autenticacao;
+        this.texto = texto;
     }
 
-    public long getAutenticacao(){
-        return  autenticacao;
-    }
-    public void setAutenticacao(long auth){
-        autenticacao = auth;
+    public String getTexto(){
+        return texto;
     }
 
     @Override
@@ -30,9 +28,10 @@ public class DocumentoAcademico extends Documento{
             return false;
         if (this.getClass() != o.getClass())
             return false;
-        DocumentoAcademico p = (DocumentoAcademico) o;
+        Deliberacao p = (Deliberacao) o;
         if (
-            this.autenticacao == p.autenticacao) {
+            this.texto.equals(p.texto)
+            ) {
             return true;
         } else {
             return false;

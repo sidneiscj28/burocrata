@@ -3,9 +3,9 @@ package estudantes.entidades;
 import professor.entidades.*;
 
 public class Ata extends Documento{
-    int numero;
-    String texto;
-    String[] presentes;
+    private int numero;
+    private String texto;
+    private String[] presentes;
 
     public Ata(
         String criador, 

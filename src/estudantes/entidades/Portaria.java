@@ -2,24 +2,24 @@ package estudantes.entidades;
 
 import professor.entidades.CodigoCurso;
 
-public class DocumentoAcademico extends Documento{
-    private long autenticacao;
+public class Portaria extends Norma{
+    private int anoInicio;
 
-    public DocumentoAcademico(
+    public Portaria(
         String criador, 
         CodigoCurso codigo, 
         int paginas,
-        long autenticacao
+        int numero,
+        boolean valido,
+        String texto,
+        int anoInicio
     ){
-        super(criador, codigo, paginas);
-        this.autenticacao = autenticacao;
+        super(criador, codigo, paginas, numero, valido, texto);
+        this.anoInicio = anoInicio;
     }
 
-    public long getAutenticacao(){
-        return  autenticacao;
-    }
-    public void setAutenticacao(long auth){
-        autenticacao = auth;
+    public int getAnoInicio(){
+        return anoInicio;
     }
 
     @Override
@@ -30,9 +30,9 @@ public class DocumentoAcademico extends Documento{
             return false;
         if (this.getClass() != o.getClass())
             return false;
-        DocumentoAcademico p = (DocumentoAcademico) o;
-        if (
-            this.autenticacao == p.autenticacao) {
+        Portaria p = (Portaria) o;
+        if (this.anoInicio == p.anoInicio
+            ) {
             return true;
         } else {
             return false;
@@ -43,4 +43,6 @@ public class DocumentoAcademico extends Documento{
     public int hashCode(){
         return 0; // mudar isso
     }
+
+
 }

@@ -1,25 +1,24 @@
 package estudantes.entidades;
+import java.util.Arrays;
 
 import professor.entidades.CodigoCurso;
 
-public class DocumentoAcademico extends Documento{
-    private long autenticacao;
+public class Circular extends Deliberacao{
+    private String[] destinatarios;
 
-    public DocumentoAcademico(
+    public Circular(
         String criador, 
         CodigoCurso codigo, 
         int paginas,
-        long autenticacao
+        String texto,
+        String[] destinatarios
     ){
-        super(criador, codigo, paginas);
-        this.autenticacao = autenticacao;
+        super(criador, codigo, paginas, texto);
+        this.destinatarios = destinatarios;
     }
 
-    public long getAutenticacao(){
-        return  autenticacao;
-    }
-    public void setAutenticacao(long auth){
-        autenticacao = auth;
+    public String[] getDestinatarios(){
+        return destinatarios;
     }
 
     @Override
@@ -30,9 +29,11 @@ public class DocumentoAcademico extends Documento{
             return false;
         if (this.getClass() != o.getClass())
             return false;
-        DocumentoAcademico p = (DocumentoAcademico) o;
+        Circular p = (Circular) o;
         if (
-            this.autenticacao == p.autenticacao) {
+            // this.destinatarios.equals(p.destinatarios)
+            Arrays.equals(this.destinatarios, p.destinatarios) // está correto?
+            ) {
             return true;
         } else {
             return false;

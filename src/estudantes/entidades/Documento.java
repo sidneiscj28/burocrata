@@ -10,9 +10,9 @@ import professor.entidades.CodigoCurso;
  * @author Rafaela de Menezes e Sidnei Correia Junior
  */
 public abstract class Documento {
-    String criador;
-    CodigoCurso codigo;
-    int paginas;
+    private String criador;
+    private CodigoCurso codigo;
+    private int paginas;
 
     public Documento(String criador, CodigoCurso codigo, int paginas){
         this.criador = criador;
