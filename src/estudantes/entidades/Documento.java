@@ -10,9 +10,9 @@ import professor.entidades.CodigoCurso;
  * @author Rafaela de Menezes e Sidnei Correia Junior
  */
 public abstract class Documento {
-    private String criador;
-    private CodigoCurso codigo;
-    private int paginas;
+    protected  String criador;
+    protected  CodigoCurso codigo;
+    protected  int paginas;
 
     public Documento(String criador, CodigoCurso codigo, int paginas){
         this.criador = criador;
@@ -48,7 +48,7 @@ public abstract class Documento {
 
     @Override
     public int hashCode(){
-        return 0; // mudar isso
+        return 7; // mudar isso
     }
 
 }
