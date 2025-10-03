@@ -140,7 +140,7 @@ public class Universidade {
      * foi devolvido, ou false caso contrário
      */
     public boolean devolverDocumentoParaMonteDoCurso(Documento documento, CodigoCurso codigo){
-        if(documento == null || !documento.getCodigoCurso().equals(codigo)){
+        if(documento == null || !documento.getCodigo().equals(codigo)){
             return false;
         }
         cursos.get(codigo).devolverDocumento(documento);

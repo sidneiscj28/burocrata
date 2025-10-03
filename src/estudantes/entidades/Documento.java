@@ -43,7 +43,7 @@ public abstract class Documento {
      * Método getPagina
      * @return
      */
-    public int getPagina(){
+    public int getPaginas(){
         return paginas;
     }
 
