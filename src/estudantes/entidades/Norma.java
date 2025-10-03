@@ -54,7 +54,7 @@ public class Norma extends DocumentoAdministrativo{
 
     @Override
     public int hashCode(){
-        return 0; // mudar isso
+        return 5; 
     }
 }
 

@@ -42,6 +42,6 @@ public class Certificado extends Registro{
 
     @Override
     public int hashCode(){
-        return 7; // mudar isso
+        return 13; 
     }
 }

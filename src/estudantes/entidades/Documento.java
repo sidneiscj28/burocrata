@@ -14,18 +14,35 @@ public abstract class Documento {
     protected  CodigoCurso codigo;
     protected  int paginas;
 
+    /**
+     * Método construtor Conta
+     * @param criador
+     * @param codigo
+     * @param paginas
+     */
     public Documento(String criador, CodigoCurso codigo, int paginas){
         this.criador = criador;
         this.codigo = codigo;
         this.paginas = paginas;
     }
-
+    /**
+     * Método getCriador
+     * @return
+     */
     public String getCriador(){
         return criador;
     }
+    /**
+     * Método getCodigo
+     * @return
+     */
     public CodigoCurso getCodigo(){
         return codigo;
     }
+    /**
+     * Método getPagina
+     * @return
+     */
     public int getPagina(){
         return paginas;
     }
@@ -48,7 +65,7 @@ public abstract class Documento {
 
     @Override
     public int hashCode(){
-        return 7; // mudar isso
+        return 1; 
     }
 
 }

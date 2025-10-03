@@ -51,6 +51,6 @@ public class Registro extends DocumentoAcademico{
 
     @Override
     public int hashCode(){
-        return 0; // mudar isso
+        return 7; 
     }
 }

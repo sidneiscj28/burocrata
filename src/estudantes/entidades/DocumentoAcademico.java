@@ -41,6 +41,6 @@ public class DocumentoAcademico extends Documento{
 
     @Override
     public int hashCode(){
-        return 0; // mudar isso
+        return 4; 
     }
 }

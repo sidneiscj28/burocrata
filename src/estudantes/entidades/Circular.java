@@ -42,6 +42,6 @@ public class Circular extends Deliberacao{
 
     @Override
     public int hashCode(){
-        return 0; // mudar isso
+        return 11; 
     }
 }

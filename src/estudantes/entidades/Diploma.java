@@ -43,6 +43,6 @@ public class Diploma extends Certificado{
 
     @Override
     public int hashCode(){
-        return 0; // mudar isso
+        return 16; 
     }
 }

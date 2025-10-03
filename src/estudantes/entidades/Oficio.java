@@ -42,6 +42,6 @@ public class Oficio extends Deliberacao{
 
     @Override
     public int hashCode(){
-        return 0; // mudar isso
+        return 12; 
     }
 }

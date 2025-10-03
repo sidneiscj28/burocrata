@@ -41,7 +41,7 @@ public class Portaria extends Norma{
 
     @Override
     public int hashCode(){
-        return 0; // mudar isso
+        return 9; 
     }
 
 

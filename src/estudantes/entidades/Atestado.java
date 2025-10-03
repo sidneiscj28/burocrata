@@ -50,7 +50,7 @@ public class Atestado extends Registro{
 
     @Override
     public int hashCode(){
-        return 0; // mudar isso
+        return 15; 
     }
 
 }

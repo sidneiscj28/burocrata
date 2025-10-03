@@ -49,7 +49,7 @@ public class Plano extends DocumentoAcademico{
 
     @Override
     public int hashCode(){
-        return 0; // mudar isso
+        return 8; 
     }
 
 }

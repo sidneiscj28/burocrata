@@ -26,6 +26,6 @@ public class DocumentoAdministrativo extends Documento{
 
     @Override
     public int hashCode(){
-        return 7; // mudar isso
+        return 3; 
     }
 }
