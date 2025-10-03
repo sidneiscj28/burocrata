@@ -61,14 +61,24 @@ public class Burocrata {
     public void trabalhar(){
         
     }
-
+    /**
+     * Método getEstresse
+     * @return
+     */
     public int getEstresse(){
         return estresse;
     }
-    
+    /**
+     * Método estressar
+     * @return
+     */
     public void estressar(){
         estresse++;
     }
+    /**
+     * Método estressarMuito
+     * @return
+     */
     public void estressarMuito(){
         estresse += 10;
     }

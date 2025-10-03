@@ -1,10 +1,22 @@
 package estudantes.entidades;
 
 import professor.entidades.CodigoCurso;
-
+/**
+ * Classe que representa um documento do tipo acadêmico.
+ * <br><br>
+ * 
+ * 
+ * @author Rafaela de Menezes e Sidnei Correia Junior
+ */
 public class DocumentoAcademico extends Documento{
     private long autenticacao;
-
+    /**
+     * Construtor de DocumentoAcademico
+     * @param criador
+     * @param codigo
+     * @param paginas
+     * @param autenticacao
+     */
     public DocumentoAcademico(
         String criador, 
         CodigoCurso codigo, 
@@ -14,12 +26,12 @@ public class DocumentoAcademico extends Documento{
         super(criador, codigo, paginas);
         this.autenticacao = autenticacao;
     }
-
+    /**
+     * Método getAutenticacao
+     * @return
+     */
     public long getAutenticacao(){
         return  autenticacao;
-    }
-    public void setAutenticacao(long auth){
-        autenticacao = auth;
     }
 
     @Override

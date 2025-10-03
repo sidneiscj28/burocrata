@@ -1,10 +1,25 @@
 package estudantes.entidades;
 
 import professor.entidades.CodigoCurso;
-
+/**
+ * Classe que representa uma norma do tipo edital.
+ * <br><br>
+ * 
+ * 
+ * @author Rafaela de Menezes e Sidnei Correia Junior
+ */
 public class Edital extends Norma{
     private String[] responsaveis;
-
+    /**
+     * Construtor de Edital
+     * @param criador
+     * @param codigo
+     * @param paginas
+     * @param numero
+     * @param valido
+     * @param texto
+     * @param responsaveis
+     */
     public Edital(
         String criador, 
         CodigoCurso codigo, 
@@ -17,7 +32,10 @@ public class Edital extends Norma{
         super(criador, codigo, paginas, numero, valido, texto);
         this.responsaveis = responsaveis;
     }
-
+    /**
+     * Método getResponsaveis
+     * @return
+     */
     public String[] getResponsaveis(){
         return responsaveis;
     }

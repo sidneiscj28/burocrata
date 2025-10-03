@@ -3,12 +3,27 @@ package estudantes.entidades;
 import java.util.Arrays;
 
 import professor.entidades.*;
-
+/**
+ * Classe que representa um documento do tipo ata.
+ * <br><br>
+ * 
+ * 
+ * @author Rafaela de Menezes e Sidnei Correia Junior
+ */
 public class Ata extends Documento{
     private int numero;
     private String texto;
     private String[] presentes;
 
+    /**
+     * Construtor de Ata
+     * @param criador
+     * @param codigo
+     * @param paginas
+     * @param numero
+     * @param texto
+     * @param presentes
+     */
     public Ata(
         String criador, 
         CodigoCurso codigo, 
@@ -23,13 +38,24 @@ public class Ata extends Documento{
             this.texto = texto;
             this.presentes = presentes;
     }
-
+    /**
+     * Método getNumero
+     * @return
+     */
     public int getNumero(){
         return numero;
     }
+    /**
+     * Método getTexto
+     * @return
+     */
     public String getTexto(){
         return texto;
     }
+    /**
+     * Método getPresentes
+     * @return
+     */
     public String[] getPresentes(){
         return presentes;
     }

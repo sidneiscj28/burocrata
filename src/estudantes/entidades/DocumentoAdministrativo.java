@@ -1,9 +1,20 @@
 package estudantes.entidades;
 
 import professor.entidades.CodigoCurso;
-
+/**
+ * Classe que representa um documento do tipo administrativo.
+ * <br><br>
+ * 
+ * 
+ * @author Rafaela de Menezes e Sidnei Correia Junior
+ */
 public class DocumentoAdministrativo extends Documento{
-
+    /**
+     * Construtor de Documento
+     * @param criador
+     * @param codigo
+     * @param paginas
+     */
     public DocumentoAdministrativo(String criador, CodigoCurso codigo, int paginas){
         super(criador, codigo, paginas);
     }

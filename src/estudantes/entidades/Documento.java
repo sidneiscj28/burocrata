@@ -5,7 +5,7 @@ import professor.entidades.CodigoCurso;
 /**
  * Classe que representa um documento genérico.
  * <br><br>
- * <strong>Seu trabalho começa aqui...</strong>
+ * 
  * 
  * @author Rafaela de Menezes e Sidnei Correia Junior
  */
@@ -15,7 +15,7 @@ public abstract class Documento {
     protected  int paginas;
 
     /**
-     * Método construtor Conta
+     * Construtor de Documento
      * @param criador
      * @param codigo
      * @param paginas

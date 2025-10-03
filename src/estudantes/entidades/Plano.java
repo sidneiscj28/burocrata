@@ -2,11 +2,25 @@ package estudantes.entidades;
 import java.util.Arrays;
 
 import professor.entidades.CodigoCurso;
-
+/**
+ * Classe que representa um documento acadêmico do tipo plano.
+ * <br><br>
+ * 
+ * 
+ * @author Rafaela de Menezes e Sidnei Correia Junior
+ */
 public class Plano extends DocumentoAcademico{
     private String responsavel;
     private String[] planejamento;
-
+    /**
+     * Construtor de Documento
+     * @param criador
+     * @param codigo
+     * @param paginas
+     * @param autenticacao
+     * @param responsavel
+     * @param planejamento
+     */
     public Plano(
         String criador, 
         CodigoCurso codigo, 
@@ -19,11 +33,17 @@ public class Plano extends DocumentoAcademico{
         this.responsavel = responsavel;
         this.planejamento = planejamento;
     }
-
+    /**
+     * Método getResponsavel
+     * @return
+     */
     public String getResponsavel(){
         return responsavel;
     }
-
+    /**
+     * Método getPlanejamento
+     * @return
+     */
     public String[] getPlanejamento(){
         return planejamento;
     }

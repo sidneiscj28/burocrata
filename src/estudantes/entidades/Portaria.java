@@ -1,10 +1,25 @@
 package estudantes.entidades;
 
 import professor.entidades.CodigoCurso;
-
+/**
+ * Classe que representa uma norma do tipo portaria.
+ * <br><br>
+ * 
+ * 
+ * @author Rafaela de Menezes e Sidnei Correia Junior
+ */
 public class Portaria extends Norma{
     private int anoInicio;
-
+    /**
+     * Construtor de Portaria
+     * @param criador
+     * @param codigo
+     * @param paginas
+     * @param numero
+     * @param valido
+     * @param texto
+     * @param anoInicio
+     */
     public Portaria(
         String criador, 
         CodigoCurso codigo, 
@@ -17,7 +32,10 @@ public class Portaria extends Norma{
         super(criador, codigo, paginas, numero, valido, texto);
         this.anoInicio = anoInicio;
     }
-
+    /**
+     * Método getAnoInicio
+     * @return
+     */
     public int getAnoInicio(){
         return anoInicio;
     }

@@ -1,12 +1,26 @@
 package estudantes.entidades;
 import estudantes.entidades.DocumentoAdministrativo;
 import professor.entidades.CodigoCurso;
-
+/**
+ * Classe que representa um documento administrativo do tipo norma.
+ * <br><br>
+ * 
+ * 
+ * @author Rafaela de Menezes e Sidnei Correia Junior
+ */
 public class Norma extends DocumentoAdministrativo{
     private int numero;
     private boolean valido;
     private String texto;
-
+    /**
+     * Construtor de Norma
+     * @param criador
+     * @param codigo
+     * @param paginas
+     * @param numero
+     * @param valido
+     * @param texto
+     */
     public Norma(
         String criador, 
         CodigoCurso codigo, 
@@ -21,13 +35,24 @@ public class Norma extends DocumentoAdministrativo{
         this.valido = valido;
         this.texto = texto;
     }
-
+    /**
+     * Método getNumero
+     * @return
+     */
     public int getNumero(){
         return numero;
     }
+    /**
+     * Método getValido
+     * @return
+     */
     public boolean getValido(){
         return valido;
     }
+    /**
+     * Método getTexto
+     * @return
+     */
     public String getTexto(){
         return texto;
     }

@@ -2,9 +2,28 @@ package estudantes.entidades;
 
 import professor.entidades.CodigoCurso;
 
+/**
+ * Classe que representa um registro do tipo atestado.
+ * <br><br>
+ * 
+ * 
+ * @author Rafaela de Menezes e Sidnei Correia Junior
+ */
 public class Atestado extends Registro{
     private String descricao;
     private String categoria;
+
+    /**
+     * Construtor de Atestado
+     * @param criador
+     * @param codigo
+     * @param paginas
+     * @param autenticacao
+     * @param estudante
+     * @param matricula
+     * @param descricao
+     * @param categoria
+     */
 
     public Atestado(
         String criador, 
@@ -20,11 +39,17 @@ public class Atestado extends Registro{
         this.descricao = descricao;
         this.categoria = categoria;
     }
-
+    /**
+     * Método getDescricao
+     * @return
+     */
     public String getDescricao(){
         return descricao;
     }
-
+    /**
+     * Método getCategoria
+     * @return
+     */
     public String getCategoria(){
         return categoria;
     }
