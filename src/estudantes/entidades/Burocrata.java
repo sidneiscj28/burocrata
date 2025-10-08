@@ -59,7 +59,20 @@ public class Burocrata {
      * @see professor.entidades.Universidade#devolverDocumentoParaMonteDoCurso(estudantes.entidades.Documento, professor.entidades.CodigoCurso) 
      */
     public void trabalhar(){
-        
+        Processo[] processos=mesa.getProcessos();
+        //Documento[] documento=documento.pegarCopiaDoProcesso();
+        for(int i=0; i<processos.length; i+=5){
+            universidade.despachar(processos[i]);
+            //universidade.pegarCopiaDoMonteDoCurso(documentos.getCodigo());
+            //universidade.contarDocumentosCriados();
+            //universidade.contarDocumentosDespachados();
+            //universidade.contarDocumentosPerdidos();
+            //universidade.contarProcessosDespachados();
+        }
+        universidade.contarDocumentosCriados();
+        universidade.contarDocumentosDespachados();
+        universidade.contarDocumentosPerdidos();
+        universidade.contarProcessosDespachados();
     }
     /**
      * Método getEstresse
