@@ -1,5 +1,7 @@
 package estudantes.entidades;
 
+import java.util.Objects;
+
 import professor.entidades.CodigoCurso;
 /**
  * Classe que representa um documento do tipo administrativo.
@@ -28,7 +30,9 @@ public class DocumentoAdministrativo extends Documento{
         if (this.getClass() != o.getClass())
             return false;
         DocumentoAdministrativo p = (DocumentoAdministrativo) o;
-        if (this.criador.equals(p.criador) && this.codigo.equals(p.codigo) && this.paginas == p.paginas) {
+        if (Objects.equals(this.getCriador(), p.getCriador()) && 
+            Objects.equals(this.getCodigo(), p.getCodigo()) && 
+            this.getPaginas() == p.getPaginas()) {
             return true;
         } else {
             return false;
@@ -37,6 +41,6 @@ public class DocumentoAdministrativo extends Documento{
 
     @Override
     public int hashCode(){
-        return 3; 
+        return super.hashCode(); 
     }
 }

@@ -1,5 +1,7 @@
 package estudantes.entidades;
 
+import java.util.Objects;
+
 import professor.entidades.CodigoCurso;
 
 /**
@@ -10,9 +12,9 @@ import professor.entidades.CodigoCurso;
  * @author Rafaela de Menezes e Sidnei Correia Junior
  */
 public abstract class Documento {
-    protected  String criador;
-    protected  CodigoCurso codigo;
-    protected  int paginas;
+    private String criador;
+    private CodigoCurso codigo;
+    private int paginas;
 
     /**
      * Construtor de Documento
@@ -56,7 +58,7 @@ public abstract class Documento {
         if (this.getClass() != o.getClass())
             return false;
         Documento p = (Documento) o;
-        if (this.criador.equals(p.criador) && this.codigo.equals(p.codigo) && this.paginas == p.paginas) {
+        if (Objects.equals(this.criador, p.criador) && Objects.equals(this.codigo, p.codigo) && this.paginas == p.paginas) {
             return true;
         } else {
             return false;
@@ -65,7 +67,7 @@ public abstract class Documento {
 
     @Override
     public int hashCode(){
-        return 1; 
+        return Objects.hash(criador, codigo, paginas); 
     }
 
 }

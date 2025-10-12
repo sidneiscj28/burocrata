@@ -1,6 +1,7 @@
 package estudantes.entidades;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 import professor.entidades.CodigoCurso;
 /**
@@ -63,8 +64,10 @@ public class Historico extends Registro{
             return false;
         Historico p = (Historico) o;
         if (
-            this.coeficiente == p.coeficiente &&
-            Arrays.equals(this.componentes, p.componentes)
+            Objects.equals(this.getEstudante(), p.getEstudante()) &&
+            this.getMatricula() == p.getMatricula() &&
+            this.getCoeficiente() == p.getCoeficiente() &&
+            Arrays.equals(this.getComponentes(), p.getComponentes())
             ) {
             return true;
         } else {
@@ -74,6 +77,6 @@ public class Historico extends Registro{
 
     @Override
     public int hashCode(){
-        return 14; 
+        return Objects.hash(coeficiente,componentes) + super.hashCode(); 
     }
 }

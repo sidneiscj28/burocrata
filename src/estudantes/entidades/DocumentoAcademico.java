@@ -1,5 +1,7 @@
 package estudantes.entidades;
 
+import java.util.Objects;
+import javax.swing.text.Document;
 import professor.entidades.CodigoCurso;
 /**
  * Classe que representa um documento do tipo acadêmico.
@@ -53,6 +55,6 @@ public class DocumentoAcademico extends Documento{
 
     @Override
     public int hashCode(){
-        return 4; 
+        return Objects.hash(autenticacao) + super.hashCode(); 
     }
 }

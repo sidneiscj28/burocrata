@@ -19,7 +19,6 @@ public class Burocrata {
     private int estresse = 0;
     private Mesa mesa;
     private Universidade universidade;
-    
     /**
      * Construtor de Burocrata.
      * 
@@ -60,15 +59,16 @@ public class Burocrata {
      */
     public void trabalhar(){
         Processo[] processos=mesa.getProcessos();
-        //Documento[] documento=documento.pegarCopiaDoProcesso();
-        for(int i=0; i<processos.length; i+=5){
-            universidade.despachar(processos[i]);
-            //universidade.pegarCopiaDoMonteDoCurso(documentos.getCodigo());
-            //universidade.contarDocumentosCriados();
-            //universidade.contarDocumentosDespachados();
-            //universidade.contarDocumentosPerdidos();
-            //universidade.contarProcessosDespachados();
+        Documento[] documentos=universidade.pegarCopiaDoMonteDoCurso(CodigoCurso.GRADUACAO_ENGENHARIA_SOFTWARE);
+        if (documentos.length == 0) {
+            return;
         }
+        Documento doc = documentos[0];
+        universidade.removerDocumentoDoMonteDoCurso(doc, CodigoCurso.GRADUACAO_ENGENHARIA_SOFTWARE);
+        Processo proc = mesa.getProcesso(0);
+        proc.adicionarDocumento(doc);
+        universidade.despachar(proc);
+
         universidade.contarDocumentosCriados();
         universidade.contarDocumentosDespachados();
         universidade.contarDocumentosPerdidos();

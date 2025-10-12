@@ -1,4 +1,6 @@
 package estudantes.entidades;
+import java.util.Objects;
+
 import estudantes.entidades.DocumentoAdministrativo;
 import professor.entidades.CodigoCurso;
 /**
@@ -67,9 +69,9 @@ public class Norma extends DocumentoAdministrativo{
             return false;
         Norma p = (Norma) o;
         if (
-            this.numero == p.numero &&
-            this.valido == p.valido &&
-            this.texto.equals(p.texto)
+            this.getNumero() == p.getNumero() &&
+            this.getValido() == p.getValido() &&
+            Objects.equals(this.getTexto(), p.getTexto())
             ) {
             return true;
         } else {
@@ -79,7 +81,7 @@ public class Norma extends DocumentoAdministrativo{
 
     @Override
     public int hashCode(){
-        return 5; 
+        return Objects.hash(numero, valido, texto) + super.hashCode(); 
     }
 }
 

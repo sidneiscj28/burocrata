@@ -1,6 +1,7 @@
 package estudantes.entidades;
 
 import java.util.Arrays;
+import java.util.Objects;
 /**
  * Classe que representa uma deliberação do tipo ofício.
  * <br><br>
@@ -48,7 +49,7 @@ public class Oficio extends Deliberacao{
             return false;
         Oficio p = (Oficio) o;
         if (
-            this.destinatario.equals(p.destinatario)
+            Objects.equals(this.getDestinatario(), p.getDestinatario())
         ) {
             return true;
         } else {
@@ -58,6 +59,6 @@ public class Oficio extends Deliberacao{
 
     @Override
     public int hashCode(){
-        return 12; 
+        return Objects.hash(destinatario) + super.hashCode(); 
     }
 }

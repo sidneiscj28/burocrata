@@ -1,5 +1,7 @@
 package estudantes.entidades;
 
+import java.util.Objects;
+
 import professor.entidades.CodigoCurso;
 /**
  * Classe que representa uma norma do tipo edital.
@@ -49,13 +51,13 @@ public class Edital extends Norma{
         if (this.getClass() != o.getClass())
             return false;
         Edital p = (Edital) o;
-        if (this.criador.equals(p.criador) && 
-            this.codigo.equals(p.codigo) && 
-            this.paginas == p.paginas &&
-            this.numero == p.numero &&
-            this.valido == p.valido &&
-            this.texto.equals(p.texto) &&
-            this.responsaveis.equals(p.responsaveis) // está certo ??????
+        if (Objects.equals(this.getCriador(), p.getCriador()) && 
+            Objects.equals(this.getCodigo(), p.getCodigo()) && 
+            this.getPaginas() == p.getPaginas() &&
+            this.getNumero() == p.getNumero() &&
+            this.getValido() == p.getValido() &&
+            Objects.equals(this.getTexto(), p.getTexto()) &&
+            Objects.equals(this.responsaveis, p.getResponsaveis()) // está certo ??????
             ) {
             return true;
         } else {
@@ -65,6 +67,6 @@ public class Edital extends Norma{
 
     @Override
     public int hashCode(){
-        return 10; 
+        return Objects.hash(responsaveis) + super.hashCode();
     }
 }
