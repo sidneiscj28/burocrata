@@ -58,21 +58,35 @@ public class Burocrata {
      * @see professor.entidades.Universidade#devolverDocumentoParaMonteDoCurso(estudantes.entidades.Documento, professor.entidades.CodigoCurso) 
      */
     public void trabalhar(){
-        Processo[] processos=mesa.getProcessos();
-        Documento[] documentos=universidade.pegarCopiaDoMonteDoCurso(CodigoCurso.GRADUACAO_ENGENHARIA_SOFTWARE);
-        if (documentos.length == 0) {
-            return;
-        }
-        Documento doc = documentos[0];
-        universidade.removerDocumentoDoMonteDoCurso(doc, CodigoCurso.GRADUACAO_ENGENHARIA_SOFTWARE);
-        Processo proc = mesa.getProcesso(0);
-        proc.adicionarDocumento(doc);
-        universidade.despachar(proc);
+        // Itera sobre todos os códigos de curso existentes na enumeração CodigoCurso
+        for (CodigoCurso codigo : CodigoCurso.values()) {
+            // Pega os documentos do monte do curso atual
+            Documento[] documentos = universidade.pegarCopiaDoMonteDoCurso(codigo);
 
-        universidade.contarDocumentosCriados();
-        universidade.contarDocumentosDespachados();
-        universidade.contarDocumentosPerdidos();
-        universidade.contarProcessosDespachados();
+            // Se não houver documentos neste monte, passa para o próximo curso
+            if (documentos.length == 0) {
+                return;
+            }
+
+            // Pega o primeiro documento da lista (o mais recente)
+            Documento doc = documentos[0];
+
+            // Tenta encontrar um processo vago na mesa para adicionar o documento
+            for (int i = 0; i < mesa.getProcessos().length; i++) {
+                Processo proc = mesa.getProcesso(i);
+                if (proc != null) { // Verifica se o processo existe (não foi despachado)
+                    universidade.removerDocumentoDoMonteDoCurso(doc, codigo);
+                    proc.adicionarDocumento(doc);
+                    universidade.despachar(proc);
+
+                    universidade.contarDocumentosCriados();
+                    universidade.contarDocumentosDespachados();
+                    universidade.contarDocumentosPerdidos();
+                    universidade.contarProcessosDespachados();
+                    break; // Sai do loop dos processos, pois já usou o documento
+                }
+            }
+        }
     }
     /**
      * Método getEstresse

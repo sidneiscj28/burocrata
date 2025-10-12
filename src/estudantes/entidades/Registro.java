@@ -1,6 +1,7 @@
 package estudantes.entidades;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 import professor.entidades.CodigoCurso;
 /**
@@ -60,8 +61,8 @@ public class Registro extends DocumentoAcademico{
             return false;
         Registro p = (Registro) o;
         if (
-            this.estudante.equals(p.estudante) &&
-            this.matricula == p.matricula
+            Objects.equals(this.getEstudante(), p.getEstudante()) &&
+            this.getMatricula() == p.getMatricula()
             ) {
             return true;
         } else {
@@ -71,6 +72,6 @@ public class Registro extends DocumentoAcademico{
 
     @Override
     public int hashCode(){
-        return 7; 
+        return Objects.hash(estudante, matricula) + super.hashCode(); 
     }
 }
