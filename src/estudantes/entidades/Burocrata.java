@@ -4,12 +4,14 @@ import professor.entidades.*;
 
 /**
  * Classe que traz a lógica do algoritmo de organização e despacho de processos.
- * <br><br>
+ * <br>
+ * <br>
  * Você pode incluir novos atributos e métodos nessa classe para criar
- * lógicas mais complexas para o gerenciamento da organização e despacho de 
- * processos, mas esses <strong>atributos e métodos devem ser todos 
+ * lógicas mais complexas para o gerenciamento da organização e despacho de
+ * processos, mas esses <strong>atributos e métodos devem ser todos
  * privados</strong> e eles não serão invocados diretamente pelo simulador.
- * <br><br>
+ * <br>
+ * <br>
  * Os únicos métodos públicos devem ser: getEstresse, trabalhar, estressar e
  * estressarMuito.
  * 
@@ -19,94 +21,133 @@ public class Burocrata {
     private int estresse = 0;
     private Mesa mesa;
     private Universidade universidade;
+
     /**
      * Construtor de Burocrata.
      * 
      * @param m mesa com os processos
      * @param u universidade com os montes dos cursos e a secretaria
      */
-    public Burocrata(Mesa m, Universidade u){
+    public Burocrata(Mesa m, Universidade u) {
         this.mesa = m;
         this.universidade = u;
     }
-    
+
     /**
      * Executa a lógica de criação e despacho dos processos.
-     * <br><br>
-     * Esse método é o único método de controle invocado durante a simulação 
+     * <br>
+     * <br>
+     * Esse método é o único método de controle invocado durante a simulação
      * da universidade.
-     * <br><br>
-     * Aqui podem ser feitas todas as verificações sobre os documentos nos 
-     * montes dos cursos e dos processos abertos na mesa do Burocrata. A partir 
+     * <br>
+     * <br>
+     * Aqui podem ser feitas todas as verificações sobre os documentos nos
+     * montes dos cursos e dos processos abertos na mesa do Burocrata. A partir
      * dessas informações, você pode colocar documentos nos processos abertos
      * e despachar os processos para a secretaria acadêmica.
-     * <br><br>
+     * <br>
+     * <br>
      * Cuidado com a complexidade do seu algoritmo, porque se ele demorar muito
      * serão criados menos documentos na sua execução e sua produtividade geral
      * vai cair.
-     * <br><br>
+     * <br>
+     * <br>
      * Esse método será chamado a cada 100 milissegundos pelo simulador da
      * universidade.
-     * <br><br>
+     * <br>
+     * <br>
      * <strong>O burocrata não pode manter documentos com ele</strong> depois
      * que o método trabalhar terminar de executar, ou seja, você deve devolver
      * para os montes dos cursos todos os documentos que você removeu dos montes
      * dos cursos.
      * 
      * @see professor.entidades.Universidade#despachar(Processo)
-     * @see professor.entidades.Universidade#removerDocumentoDoMonteDoCurso(estudantes.entidades.Documento, professor.entidades.CodigoCurso)
-     * @see professor.entidades.Universidade#devolverDocumentoParaMonteDoCurso(estudantes.entidades.Documento, professor.entidades.CodigoCurso) 
+     * @see professor.entidades.Universidade#removerDocumentoDoMonteDoCurso(estudantes.entidades.Documento,
+     *      professor.entidades.CodigoCurso)
+     * @see professor.entidades.Universidade#devolverDocumentoParaMonteDoCurso(estudantes.entidades.Documento,
+     *      professor.entidades.CodigoCurso)
      */
-    public void trabalhar(){
+    public void trabalhar() {
         // Itera sobre todos os códigos de curso existentes na enumeração CodigoCurso
         for (CodigoCurso codigo : CodigoCurso.values()) {
             // Pega os documentos do monte do curso atual
             Documento[] documentos = universidade.pegarCopiaDoMonteDoCurso(codigo);
-
             // Se não houver documentos neste monte, passa para o próximo curso
             if (documentos.length == 0) {
-                return;
+                continue;
             }
-
             // Pega o primeiro documento da lista (o mais recente)
             Documento doc = documentos[0];
-
             // Tenta encontrar um processo vago na mesa para adicionar o documento
             for (int i = 0; i < mesa.getProcessos().length; i++) {
                 Processo proc = mesa.getProcesso(i);
                 if (proc != null) { // Verifica se o processo existe (não foi despachado)
                     universidade.removerDocumentoDoMonteDoCurso(doc, codigo);
-                    proc.adicionarDocumento(doc);
-                    universidade.despachar(proc);
-
-                    universidade.contarDocumentosCriados();
-                    universidade.contarDocumentosDespachados();
-                    universidade.contarDocumentosPerdidos();
-                    universidade.contarProcessosDespachados();
-                    break; // Sai do loop dos processos, pois já usou o documento
+                    // ia
+                    if (codigo.name().startsWith("GRADUACAO")) {
+                        proc.adicionarDocumento(doc);
+                        universidade.despachar(proc);
+                    } else if (codigo.name().startsWith("POS_GRADUACAO")) {
+                        proc.adicionarDocumento(doc);
+                        universidade.despachar(proc);
+                    }// ia
+                 break;
                 }
+                // Pega os documentos do monte do curso atual
+                /*
+                 * Documento[] documentos = universidade.pegarCopiaDoMonteDoCurso(codigo);
+                 * 
+                 * // Se não houver documentos neste monte, passa para o próximo curso
+                 * if (documentos.length == 0) {
+                 * return;
+                 * }
+                 * 
+                 * // Pega o primeiro documento da lista (o mais recente)
+                 * Documento doc = documentos[0];
+                 * 
+                 * // Tenta encontrar um processo vago na mesa para adicionar o documento
+                 * for (int i = 0; i < mesa.getProcessos().length; i++) {
+                 * Processo proc = mesa.getProcesso(i);
+                 * if (proc != null) { // Verifica se o processo existe (não foi despachado)
+                 * universidade.removerDocumentoDoMonteDoCurso(doc, codigo);
+                 * proc.adicionarDocumento(doc);
+                 * universidade.despachar(proc);
+                 * break; // Sai do loop dos processos, pois já usou o documento
+                 * }
+                 * }
+                 */
             }
+            universidade.contarDocumentosCriados();
+            universidade.contarDocumentosDespachados();
+            universidade.contarProcessosDespachados();
+            universidade.contarDocumentosPerdidos();
         }
     }
+
     /**
      * Método getEstresse
+     * 
      * @return
      */
-    public int getEstresse(){
+    public int getEstresse() {
         return estresse;
     }
+
     /**
      * Método estressar
+     * 
      * @return
      */
-    public void estressar(){
+    public void estressar() {
         estresse++;
     }
+
     /**
      * Método estressarMuito
+     * 
      * @return
      */
-    public void estressarMuito(){
+    public void estressarMuito() {
         estresse += 10;
     }
 
