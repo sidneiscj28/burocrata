@@ -57,8 +57,7 @@ public class Edital extends Norma{
             this.getNumero() == p.getNumero() &&
             this.getValido() == p.getValido() &&
             Objects.equals(this.getTexto(), p.getTexto()) &&
-            Objects.equals(this.responsaveis, p.getResponsaveis()) // está certo ??????
-            ) {
+            Objects.equals(this.responsaveis, p.getResponsaveis())){
             return true;
         } else {
             return false;
@@ -67,6 +66,6 @@ public class Edital extends Norma{
 
     @Override
     public int hashCode(){
-        return Objects.hash(responsaveis) + super.hashCode();
+        return Objects.hash(responsaveis) + super.hashCode(); //problema array
     }
 }

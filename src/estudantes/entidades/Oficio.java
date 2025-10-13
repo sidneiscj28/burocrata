@@ -1,6 +1,5 @@
 package estudantes.entidades;
 
-import java.util.Arrays;
 import java.util.Objects;
 /**
  * Classe que representa uma deliberação do tipo ofício.

@@ -1,7 +1,6 @@
 package estudantes.entidades;
 import java.util.Objects;
 
-import estudantes.entidades.DocumentoAdministrativo;
 import professor.entidades.CodigoCurso;
 /**
  * Classe que representa um documento administrativo do tipo norma.
@@ -84,27 +83,3 @@ public class Norma extends DocumentoAdministrativo{
         return Objects.hash(numero, valido, texto) + super.hashCode(); 
     }
 }
-
-
-// VERIFICAR SE OS ATRIBUTOS DA CLASSE MÃE SERÃO INCLUSAS EM CADA EQUALS
-//   @Override
-//     public boolean equals(Object o){
-//         if (this == o)
-//             return true;
-//         if (o == null)
-//             return false;
-//         if (this.getClass() != o.getClass())
-//             return false;
-//         Norma p = (Norma) o;
-//         if (this.criador.equals(p.criador) && 
-//             this.codigo.equals(p.codigo) && 
-//             this.paginas == p.paginas &&
-//             this.numero == p.numero &&
-//             this.valido == p.valido &&
-//             this.texto.equals(p.texto)
-//             ) {
-//             return true;
-//         } else {
-//             return false;
-//         }
-//     }

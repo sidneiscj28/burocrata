@@ -1,6 +1,5 @@
 package estudantes.entidades;
 
-import estudantes.entidades.DocumentoAdministrativo;
 import professor.entidades.CodigoCurso;
 /**
  * Classe que representa um documento administrativo do tipo deliberação.
