@@ -1,7 +1,6 @@
 package estudantes.entidades;
 
 import java.util.Objects;
-import javax.swing.text.Document;
 import professor.entidades.CodigoCurso;
 /**
  * Classe que representa um documento do tipo acadêmico.
@@ -45,8 +44,10 @@ public class DocumentoAcademico extends Documento{
         if (this.getClass() != o.getClass())
             return false;
         DocumentoAcademico p = (DocumentoAcademico) o;
-        if (
-            this.autenticacao == p.autenticacao) {
+        if (Objects.equals(this.getCriador(), p.getCriador()) && 
+            Objects.equals(this.getCodigo(), p.getCodigo()) && 
+            this.getPaginas() == p.getPaginas() &&
+            this.getAutenticacao() == p.getAutenticacao()) {
             return true;
         } else {
             return false;

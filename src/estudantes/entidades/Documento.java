@@ -58,7 +58,9 @@ public abstract class Documento {
         if (this.getClass() != o.getClass())
             return false;
         Documento p = (Documento) o;
-        if (Objects.equals(this.criador, p.criador) && Objects.equals(this.codigo, p.codigo) && this.paginas == p.paginas) {
+        if (Objects.equals(this.getCriador(), p.getCriador()) && 
+            Objects.equals(this.getCodigo(), p.getCodigo()) && 
+            this.getPaginas() == p.getPaginas()) {
             return true;
         } else {
             return false;

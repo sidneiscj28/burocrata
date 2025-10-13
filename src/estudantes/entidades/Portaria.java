@@ -1,5 +1,7 @@
 package estudantes.entidades;
 
+import java.util.Objects;
+
 import professor.entidades.CodigoCurso;
 /**
  * Classe que representa uma norma do tipo portaria.
@@ -49,7 +51,13 @@ public class Portaria extends Norma{
         if (this.getClass() != o.getClass())
             return false;
         Portaria p = (Portaria) o;
-        if (this.anoInicio == p.anoInicio
+        if (Objects.equals(this.getCriador(), p.getCriador()) && 
+            Objects.equals(this.getCodigo(), p.getCodigo()) && 
+            this.getPaginas() == p.getPaginas() &&
+            this.getNumero() == p.getNumero() &&
+            this.getValido() == p.getValido() &&
+            Objects.equals(this.getTexto(), p.getTexto()) &&
+            this.getAnoInicio() == p.getAnoInicio()
             ) {
             return true;
         } else {
@@ -59,7 +67,7 @@ public class Portaria extends Norma{
 
     @Override
     public int hashCode(){
-        return 9; 
+        return Objects.hash(anoInicio) + super.hashCode(); 
     }
 
 

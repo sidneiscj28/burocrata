@@ -1,5 +1,6 @@
 package estudantes.entidades;
 import java.util.Arrays;
+import java.util.Objects;
 
 import professor.entidades.CodigoCurso;
 /**
@@ -57,9 +58,12 @@ public class Plano extends DocumentoAcademico{
         if (this.getClass() != o.getClass())
             return false;
         Plano p = (Plano) o;
-        if (
-            this.responsavel.equals(p.responsavel) &&
-            Arrays.equals(this.planejamento, p.planejamento)   
+        if (Objects.equals(this.getCriador(), p.getCriador()) && 
+            Objects.equals(this.getCodigo(), p.getCodigo()) && 
+            this.getPaginas() == p.getPaginas() &&
+            this.getAutenticacao() == p.getAutenticacao() &&
+            Objects.equals(this.getResponsavel(), p.getResponsavel()) &&
+            Arrays.equals(this.getPlanejamento(), p.getPlanejamento())   
         ) {
             return true;
         } else {
@@ -69,7 +73,7 @@ public class Plano extends DocumentoAcademico{
 
     @Override
     public int hashCode(){
-        return 8; 
+        return Objects.hash(responsavel,planejamento) + super.hashCode(); 
     }
 
 }

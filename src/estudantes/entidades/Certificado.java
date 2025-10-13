@@ -1,5 +1,7 @@
 package estudantes.entidades;
 
+import java.util.Objects;
+
 import professor.entidades.CodigoCurso;
 /**
  * Classe que representa um registro do tipo certificado.
@@ -49,8 +51,13 @@ public class Certificado extends Registro{
         if (this.getClass() != o.getClass())
             return false;
         Certificado p = (Certificado) o;
-        if (
-            this.descricao.equals(p.descricao) 
+        if (Objects.equals(this.getCriador(), p.getCriador()) && 
+            Objects.equals(this.getCodigo(), p.getCodigo()) && 
+            this.getPaginas() == p.getPaginas() &&
+            this.getAutenticacao() == p.getAutenticacao() &&
+            Objects.equals(this.getEstudante(), p.getEstudante()) &&
+            this.getMatricula() == p.getMatricula() &&
+            Objects.equals(this.getDescricao(), p.getDescricao())
             ) {
             return true;
         } else {
@@ -60,6 +67,6 @@ public class Certificado extends Registro{
 
     @Override
     public int hashCode(){
-        return 13; 
+        return Objects.hash(descricao) + super.hashCode(); 
     }
 }

@@ -1,5 +1,6 @@
 package estudantes.entidades;
 import java.util.Arrays;
+import java.util.Objects;
 
 import professor.entidades.CodigoCurso;
 /**
@@ -46,9 +47,11 @@ public class Circular extends Deliberacao{
         if (this.getClass() != o.getClass())
             return false;
         Circular p = (Circular) o;
-        if (
-            // this.destinatarios.equals(p.destinatarios)
-            Arrays.equals(this.destinatarios, p.destinatarios) // está correto?
+        if (Objects.equals(this.getCriador(), p.getCriador()) && 
+            Objects.equals(this.getCodigo(), p.getCodigo()) && 
+            this.getPaginas() == p.getPaginas() &&
+            Objects.equals(this.getTexto(), p.getTexto()) &&
+            Arrays.equals(this.getDestinatarios(), p.getDestinatarios()) 
             ) {
             return true;
         } else {
@@ -58,6 +61,6 @@ public class Circular extends Deliberacao{
 
     @Override
     public int hashCode(){
-        return 11; 
+        return Objects.hash(destinatarios) + super.hashCode(); 
     }
 }

@@ -1,5 +1,7 @@
 package estudantes.entidades;
 
+import java.util.Objects;
+
 import professor.entidades.CodigoCurso;
 /**
  * Classe que representa um documento administrativo do tipo deliberação.
@@ -44,8 +46,10 @@ public class Deliberacao extends  DocumentoAdministrativo{
         if (this.getClass() != o.getClass())
             return false;
         Deliberacao p = (Deliberacao) o;
-        if (
-            this.texto.equals(p.texto)
+        if (Objects.equals(this.getCriador(), p.getCriador()) && 
+            Objects.equals(this.getCodigo(), p.getCodigo()) && 
+            this.getPaginas() == p.getPaginas() &&
+            Objects.equals(this.getTexto(), p.getTexto())
             ) {
             return true;
         } else {
@@ -55,6 +59,6 @@ public class Deliberacao extends  DocumentoAdministrativo{
 
     @Override
     public int hashCode(){
-        return 6; 
+        return Objects.hash(texto) + super.hashCode(); 
     }
 }

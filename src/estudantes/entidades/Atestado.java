@@ -1,5 +1,7 @@
 package estudantes.entidades;
 
+import java.util.Objects;
+
 import professor.entidades.CodigoCurso;
 
 /**
@@ -63,7 +65,11 @@ public class Atestado extends Registro{
         if (this.getClass() != o.getClass())
             return false;
         Atestado p = (Atestado) o;
-        if (
+        if (Objects.equals(this.getCriador(), p.getCriador()) && 
+            Objects.equals(this.getCodigo(), p.getCodigo()) && 
+            this.getPaginas() == p.getPaginas() &&
+            Objects.equals(this.getEstudante(), p.getEstudante()) &&
+            this.getMatricula() == p.getMatricula() &&
             this.descricao.equals(p.descricao) &&
             this.categoria.equals(p.categoria) 
             ) {
@@ -75,7 +81,7 @@ public class Atestado extends Registro{
 
     @Override
     public int hashCode(){
-        return 15; 
+        return Objects.hash(descricao, categoria) + super.hashCode(); 
     }
 
 }

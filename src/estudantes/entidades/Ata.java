@@ -1,6 +1,7 @@
 package estudantes.entidades;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 import professor.entidades.*;
 /**
@@ -68,7 +69,9 @@ public class Ata extends Documento{
         if (this.getClass() != o.getClass())
             return false;
         Ata p = (Ata) o;
-        if (
+        if (Objects.equals(this.getCriador(), p.getCriador()) && 
+            Objects.equals(this.getCodigo(), p.getCodigo()) && 
+            this.getPaginas() == p.getPaginas() &&
             this.numero==p.numero &&
             this.texto.equals(p.texto) &&
             Arrays.equals(this.presentes, p.presentes)

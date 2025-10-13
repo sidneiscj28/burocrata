@@ -67,7 +67,9 @@ public class Norma extends DocumentoAdministrativo{
         if (this.getClass() != o.getClass())
             return false;
         Norma p = (Norma) o;
-        if (
+        if (Objects.equals(this.getCriador(), p.getCriador()) && 
+            Objects.equals(this.getCodigo(), p.getCodigo()) && 
+            this.getPaginas() == p.getPaginas() &&
             this.getNumero() == p.getNumero() &&
             this.getValido() == p.getValido() &&
             Objects.equals(this.getTexto(), p.getTexto())

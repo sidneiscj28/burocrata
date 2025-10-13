@@ -47,7 +47,10 @@ public class Oficio extends Deliberacao{
         if (this.getClass() != o.getClass())
             return false;
         Oficio p = (Oficio) o;
-        if (
+        if (Objects.equals(this.getCriador(), p.getCriador()) && 
+            Objects.equals(this.getCodigo(), p.getCodigo()) && 
+            this.getPaginas() == p.getPaginas() &&
+            Objects.equals(this.getTexto(), p.getTexto()) &&
             Objects.equals(this.getDestinatario(), p.getDestinatario())
         ) {
             return true;

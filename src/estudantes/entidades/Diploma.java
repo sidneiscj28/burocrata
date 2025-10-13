@@ -1,5 +1,7 @@
 package estudantes.entidades;
 
+import java.util.Objects;
+
 import professor.entidades.CodigoCurso;
 /**
  * Classe que representa um certificado do tipo diploma.
@@ -51,8 +53,14 @@ public class Diploma extends Certificado{
         if (this.getClass() != o.getClass())
             return false;
         Diploma p = (Diploma) o;
-        if (
-            this.habilitacao.equals(p.habilitacao) 
+        if (Objects.equals(this.getCriador(), p.getCriador()) && 
+            Objects.equals(this.getCodigo(), p.getCodigo()) && 
+            this.getPaginas() == p.getPaginas() &&
+            this.getAutenticacao() == p.getAutenticacao() &&
+            Objects.equals(this.getEstudante(), p.getEstudante()) &&
+            this.getMatricula() == p.getMatricula() &&
+            Objects.equals(this.getDescricao(), p.getDescricao()) &&
+            Objects.equals(this.getHabilitacao(), p.getHabilitacao())
             ) {
             return true;
         } else {
@@ -62,6 +70,6 @@ public class Diploma extends Certificado{
 
     @Override
     public int hashCode(){
-        return 16; 
+        return Objects.hash(habilitacao) + super.hashCode(); 
     }
 }

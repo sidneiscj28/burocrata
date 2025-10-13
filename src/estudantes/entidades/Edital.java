@@ -57,7 +57,7 @@ public class Edital extends Norma{
             this.getNumero() == p.getNumero() &&
             this.getValido() == p.getValido() &&
             Objects.equals(this.getTexto(), p.getTexto()) &&
-            Objects.equals(this.responsaveis, p.getResponsaveis())){
+            Objects.equals(this.getResponsaveis(), p.getResponsaveis())){
             return true;
         } else {
             return false;
