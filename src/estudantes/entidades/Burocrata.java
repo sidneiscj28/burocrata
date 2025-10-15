@@ -1,5 +1,8 @@
 package estudantes.entidades;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import professor.entidades.*;
 
 /**
@@ -81,8 +84,52 @@ public class Burocrata {
             // Tenta encontrar um processo vago na mesa para adicionar o documento
             for (int i = 0; i < mesa.getProcessos().length; i++) {
                 Processo proc = mesa.getProcesso(i);
+
+                /*
+                 * String para verificar se o primeiro documento do processo é adm
+                 * caso for não incluirá Academicos
+                 * Serve para situação oposta
+                 */
+                String temDocAdm = "";
+                
                 if (proc != null) { // Verifica se o processo existe (não foi despachado)
-                    universidade.removerDocumentoDoMonteDoCurso(doc, codigo);
+
+
+                    // verifica se a String temDocAdm já foi inicializada (primeira verificação)
+                    if (temDocAdm.equals("")){
+                        // caso a String não tenha nada ainda, a primeira verificação ficará salva nela
+                        if (getDocumentoCategoria(doc).equals("DocumentoAdministrativo")){
+                            temDocAdm = "Sim";
+                        }else if(getDocumentoCategoria(doc).equals("DocumentoAcademico")){
+                            temDocAdm = "Nao";
+                        }
+                    }
+                    
+                    // loop para filtrar documentos
+                    // separando removendo docAdm ou Academico do mesmo processo
+                    for (Documento docs : universidade.pegarCopiaDoMonteDoCurso(codigo)){
+                        if (temDocAdm.equals("Sim")){
+                            if (getDocumentoCategoria(docs).equals("DocumentoAcademico")){
+                               universidade.removerDocumentoDoMonteDoCurso(docs, codigo);
+                            }
+                        }else if (temDocAdm.equals("Nao")){
+                             if (getDocumentoCategoria(docs).equals("DocumentoAdministrativo")){
+                               universidade.removerDocumentoDoMonteDoCurso(docs, codigo);
+                            }
+                        }
+                    }
+
+                    // ia - REMOVER ESTE BLOCO QUANDO NÃO FOR MAIS NECESSÁRIO
+                    // ESTE BLOCO É PARA EXIBIR OS DOCUMENTOS DE CADA PROCESSO
+                    // TUDO QUE FICA PRINTADO DENTRO DESSES "=====" É UM PROCESSO DIFERENTE
+                    System.out.println("===============================");
+                    for (Documento docs : universidade.pegarCopiaDoMonteDoCurso(codigo)){
+                        System.out.print("Curso: " + codigo + " => ");
+                        System.out.println(getDocumentoCategoria(docs));
+                    }
+                    System.out.println("===============================");
+                    // ==============================================================
+
                     // ia
                     if (codigo.name().startsWith("GRADUACAO")) {
                         proc.adicionarDocumento(doc);
@@ -91,6 +138,9 @@ public class Burocrata {
                         proc.adicionarDocumento(doc);
                         universidade.despachar(proc);
                     }// ia
+
+                    universidade.removerDocumentoDoMonteDoCurso(doc, codigo);
+
                  break;
                 }
                 // Pega os documentos do monte do curso atual
@@ -122,6 +172,26 @@ public class Burocrata {
             universidade.contarProcessosDespachados();
             universidade.contarDocumentosPerdidos();
         }
+    }
+
+    // ia
+    public static String getDocumentoCategoria(Documento doc) {
+        // Start at the runtime class of the object (e.g., Portaria.class)
+        Class<?> currentClass = doc.getClass();
+        
+        // Loop up the hierarchy until the superclass is Documento
+        while (currentClass != null && currentClass.getSuperclass() != null && !currentClass.getSuperclass().equals(Documento.class)) {
+            // Move up to the next superclass
+            currentClass = currentClass.getSuperclass();
+        }
+
+        // If we found the class whose superclass is Documento, return its name.
+        if (currentClass != null && currentClass.getSuperclass().equals(Documento.class)) {
+            return currentClass.getSimpleName();
+        }
+
+        // Handle the case where the object itself is a Documento or the structure is different
+        return "Category Not Found"; 
     }
 
     /**
