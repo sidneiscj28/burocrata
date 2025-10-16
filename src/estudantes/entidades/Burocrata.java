@@ -82,7 +82,7 @@ public class Burocrata {
             // Pega o primeiro documento da lista (o mais recente)
             Documento doc = documentos[0];
             // Tenta encontrar um processo vago na mesa para adicionar o documento
-            for (int i = 0; i < mesa.getProcessos().length; i++) {
+            loopProcesso: for (int i = 0; i < mesa.getProcessos().length; i++) {
                 Processo proc = mesa.getProcesso(i);
 
                 /*
@@ -93,6 +93,30 @@ public class Burocrata {
                 String temDocAdm = "";
                 
                 if (proc != null) { // Verifica se o processo existe (não foi despachado)
+
+                    for (Documento docs: documentos){
+                        if (doc.getClass().getSimpleName().equals("Portaria") || 
+                            doc.getClass().getSimpleName().equals("Edital") &&
+                            doc.getPaginas() >= 100                            
+                            ){
+                                proc.adicionarDocumento(docs);
+                                universidade.despachar(proc);
+
+                                break loopProcesso;
+                            }
+                    }
+                    
+
+                    int contador = 0;
+                    for(Documento docs: documentos){
+                        if (getDocumentoCategoria(docs).equals("Ata")){
+                            contador++;
+                        }
+                    }
+
+                    if (contador == documentos.length){
+                        continue;
+                    }
 
 
                     // verifica se a String temDocAdm já foi inicializada (primeira verificação)
@@ -119,26 +143,53 @@ public class Burocrata {
                         }
                     }
 
+                    // if (doc.getClass().getSimpleName().equals("Circular") || 
+                    //     doc.getClass().getSimpleName().equals("Oficio")){
+                    //         for (Documento dest : doc.getClass().getDestinatarios){
+
+                    //         }
+                    // }
+
+                    if (doc.getClass().getSimpleName().equals("Circular")){
+                        Circular circular = (Circular) doc;
+
+                        for (String dest : circular.getDestinatarios()){
+                            Oficio ofic = (Oficio) doc;
+                            if (ofic.getDestinatario().equals(dest)){
+                                System.out.println("MESTMO DESTINATARIO");
+                            }
+                            System.out.print("Destinatario: ");
+                            System.out.println(dest);
+                        }
+                    }
+
+                    if (doc.getClass().getSimpleName().equals("Oficio")){
+                        Oficio circular = (Oficio) doc;
+                            System.out.println(circular.getDestinatario());
+                        
+                    }
+                    
+
                     // ia - REMOVER ESTE BLOCO QUANDO NÃO FOR MAIS NECESSÁRIO
                     // ESTE BLOCO É PARA EXIBIR OS DOCUMENTOS DE CADA PROCESSO
                     // TUDO QUE FICA PRINTADO DENTRO DESSES "=====" É UM PROCESSO DIFERENTE
-                    System.out.println("===============================");
-                    for (Documento docs : universidade.pegarCopiaDoMonteDoCurso(codigo)){
-                        System.out.print("Curso: " + codigo + " => ");
-                        System.out.println(getDocumentoCategoria(docs));
-                    }
-                    System.out.println("===============================");
+                
+                    // System.out.println("===============================");
+                    
+                    // for (Documento docs : universidade.pegarCopiaDoMonteDoCurso(codigo)){
+                    //     System.out.print("Curso: " + codigo + " => ");
+                    //     System.out.println(docs.getClass().getSimpleName());
+                    //     System.out.println("Páginas: " + doc.getPaginas()); 
+
+                    // }
+                    // System.out.println("===============================");
+                  
+                  
                     // ==============================================================
 
-                    // ia
-                    if (codigo.name().startsWith("GRADUACAO")) {
-                        proc.adicionarDocumento(doc);
-                        universidade.despachar(proc);
-                    } else if (codigo.name().startsWith("POS_GRADUACAO")) {
-                        proc.adicionarDocumento(doc);
-                        universidade.despachar(proc);
-                    }// ia
-
+                  
+                    proc.adicionarDocumento(doc);
+                    universidade.despachar(proc);
                     universidade.removerDocumentoDoMonteDoCurso(doc, codigo);
 
                  break;
