@@ -1,7 +1,6 @@
 package estudantes.entidades;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import professor.entidades.*;
 
@@ -141,6 +140,27 @@ public class Burocrata {
                                universidade.removerDocumentoDoMonteDoCurso(docs, codigo);
                             }
                         }
+                        //começo regra 5
+                        Set<String> destinatario= new HashSet<>();
+                    if (doc.getClass().getSimpleName().equals("Circular")){
+                        Circular circular = (Circular) doc;
+
+                        for (String dest : circular.getDestinatarios()){
+                            destinatario.add(dest);
+                        }
+                    }
+
+                    if (doc.getClass().getSimpleName().equals("Oficio")){
+                        Oficio oficio = (Oficio) doc;
+                            System.out.println(oficio.getDestinatario());
+                        if(destinatario.contains(oficio.getDestinatario())){
+                            System.out.println("mesmos destinatarios");
+                        }else{
+                            System.out.println("destinatarios diferentes");
+                        }
+                        
+                    }
+                    //final regra 5
                     }
 
                     // if (doc.getClass().getSimpleName().equals("Circular") || 
@@ -149,25 +169,7 @@ public class Burocrata {
 
                     //         }
                     // }
-
-                    if (doc.getClass().getSimpleName().equals("Circular")){
-                        Circular circular = (Circular) doc;
-
-                        for (String dest : circular.getDestinatarios()){
-                            Oficio ofic = (Oficio) doc;
-                            if (ofic.getDestinatario().equals(dest)){
-                                System.out.println("MESTMO DESTINATARIO");
-                            }
-                            System.out.print("Destinatario: ");
-                            System.out.println(dest);
-                        }
-                    }
-
-                    if (doc.getClass().getSimpleName().equals("Oficio")){
-                        Oficio circular = (Oficio) doc;
-                            System.out.println(circular.getDestinatario());
-                        
-                    }
+                    
                     
 
                     // ia - REMOVER ESTE BLOCO QUANDO NÃO FOR MAIS NECESSÁRIO
