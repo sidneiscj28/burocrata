@@ -114,8 +114,39 @@ public class Burocrata {
                     }
 
                     if (contador == documentos.length){
-                        continue;
+                        break;
                     }
+
+                    // REGRA 06
+                    boolean podeDespachar = false;
+                    for (Documento docs: documentos){
+                        int temDiploma = 0;
+                        boolean temCertificado = false;
+                        boolean temAta = false;
+                        if (getDocumentoCategoria(docs).equals("Diploma")){
+                            temDiploma++;
+                        }
+                        if (getDocumentoCategoria(docs).equals("Certificado")){
+                            temCertificado = true;
+                        }
+                        if (getDocumentoCategoria(docs).equals("Ata")){
+                            temAta = true;
+                        }
+                        if (temDiploma >= 2 || temCertificado || temAta){
+                            podeDespachar = true;
+                        }
+                    }
+                    
+                    for (Documento docs: documentos){
+                        if (!podeDespachar){
+                            if (getDocumentoCategoria(docs).equals("Diploma")){
+                               universidade.removerDocumentoDoMonteDoCurso(docs, codigo);
+                            }
+                        }
+                    }
+
+                    // FIM DA REGRA 06
+
 
 
                     // verifica se a String temDocAdm já foi inicializada (primeira verificação)
@@ -140,36 +171,30 @@ public class Burocrata {
                                universidade.removerDocumentoDoMonteDoCurso(docs, codigo);
                             }
                         }
+
+                        
                         //começo regra 5
-                        Set<String> destinatario= new HashSet<>();
-                    if (doc.getClass().getSimpleName().equals("Circular")){
-                        Circular circular = (Circular) doc;
+                    //     Set<String> destinatario= new HashSet<>();
+                    // if (doc.getClass().getSimpleName().equals("Circular")){
+                    //     Circular circular = (Circular) doc;
 
-                        for (String dest : circular.getDestinatarios()){
-                            destinatario.add(dest);
-                        }
-                    }
+                    //     for (String dest : circular.getDestinatarios()){
+                    //         destinatario.add(dest);
+                    //     }
+                    // }
 
-                    if (doc.getClass().getSimpleName().equals("Oficio")){
-                        Oficio oficio = (Oficio) doc;
-                            System.out.println(oficio.getDestinatario());
-                        if(destinatario.contains(oficio.getDestinatario())){
-                            System.out.println("mesmos destinatarios");
-                        }else{
-                            System.out.println("destinatarios diferentes");
-                        }
+                    // if (doc.getClass().getSimpleName().equals("Oficio")){
+                    //     Oficio oficio = (Oficio) doc;
+                    //         System.out.println(oficio.getDestinatario());
+                    //     if(destinatario.contains(oficio.getDestinatario())){
+                    //         System.out.println("mesmos destinatarios");
+                    //     }else{
+                    //         System.out.println("destinatarios diferentes");
+                    //     }
                         
                     }
                     //final regra 5
-                    }
-
-                    // if (doc.getClass().getSimpleName().equals("Circular") || 
-                    //     doc.getClass().getSimpleName().equals("Oficio")){
-                    //         for (Documento dest : doc.getClass().getDestinatarios){
-
-                    //         }
-                    // }
-                    
+                                     
                     
 
                     // ia - REMOVER ESTE BLOCO QUANDO NÃO FOR MAIS NECESSÁRIO
@@ -188,6 +213,29 @@ public class Burocrata {
                   
                   
                     // ==============================================================
+
+                    // REGRA 07 
+                    String primeiraCategoria = "";
+
+                    for (Documento docs : universidade.pegarCopiaDoMonteDoCurso(codigo)){
+                        if (docs instanceof Atestado) {
+                            Atestado atestado = (Atestado) docs;
+                            primeiraCategoria = atestado.getCategoria();
+                        }
+                    }
+
+                    for (Documento docs : universidade.pegarCopiaDoMonteDoCurso(codigo)){
+                        if (!primeiraCategoria.equals("")){
+                           if (docs instanceof Atestado) {
+                                Atestado atestado = (Atestado) docs;
+                                if (!atestado.getCategoria().equals(primeiraCategoria)){
+                                   universidade.removerDocumentoDoMonteDoCurso(docs, codigo);
+                                }
+                           }
+                        }
+                    }
+
+                    // FIM DA REGRA 07
 
                   
                     proc.adicionarDocumento(doc);
