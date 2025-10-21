@@ -31,6 +31,9 @@ public class Curso {
         this.monte = new LinkedList<>();
     }
     
+    /** 
+     * @param quantidade
+     */
     protected void criarDocumentos(int quantidade){
         for(int i = 0; i < quantidade; i++){
             Documento doc = null;
@@ -115,30 +118,52 @@ public class Curso {
         }
     }
     
+    /** 
+     * @return int
+     */
     protected int contarDocumentosNoMonte(){
         return monte.size();
     }
     
+    /** 
+     * @param documento
+     * @return boolean
+     */
     protected boolean removerDocumento(Documento documento){
         return monte.remove(documento);
     }
     
+    /** 
+     * @param documento
+     */
     protected void devolverDocumento(Documento documento){
         monte.push(documento);
     }
     
+    /** 
+     * @return Documento[]
+     */
     protected Documento[] pegarCopiaDoMonte(){
         return Arrays.copyOf(monte.toArray(), monte.size(), Documento[].class);
     }
     
+    /** 
+     * @return int
+     */
     protected static int getDocumentosCriados(){
         return documentosCriados;
     }
     
+    /** 
+     * @return String
+     */
     private String gerarNome(){
         return PRENOMES[gerador.nextInt(PRENOMES.length)] + " " + SOBRENOMES[gerador.nextInt(SOBRENOMES.length)];
     }
     
+    /** 
+     * @return String
+     */
     private String escolherComponente(){
         return COMPONENTES[gerador.nextInt(COMPONENTES.length)];
     }

@@ -76,10 +76,16 @@ public class Processo {
         return Arrays.copyOf(documentos.toArray(), documentos.size(), Documento[].class);
     }
     
+    /** 
+     * @return int
+     */
     protected int contarDocumentos(){
         return documentos.size();
     }
     
+    /** 
+     * @return int
+     */
     protected int contarPaginas(){
         int paginas = 0;
         for(Documento documento : documentos){

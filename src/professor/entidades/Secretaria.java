@@ -22,6 +22,10 @@ public class Secretaria {
         processosDespachadosComProblemas = new LinkedList<>();
     }
     
+    /** 
+     * @param processo
+     * @param burocrata
+     */
     protected void despachar(Processo processo, Burocrata burocrata){
         //perder documentos se exceder capacidade do processo
         if(processo.contarPaginas() > 250){
@@ -174,14 +178,23 @@ public class Secretaria {
         }
     }
     
+    /** 
+     * @return int
+     */
     protected int contarProcessosDespachados(){
         return processosDespachadosCorretamente.size() + processosDespachadosComProblemas.size();
     }
     
+    /** 
+     * @return int
+     */
     protected int contarDocumentosDespachados(){
         return documentosDespachados;
     }
     
+    /** 
+     * @return int
+     */
     protected int contarDocumentosPerdidos(){
         return documentosPerdidos;
     }

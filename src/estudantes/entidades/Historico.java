@@ -54,6 +54,10 @@ public class Historico extends Registro{
         return componentes;
     }
 
+    /** 
+     * @param o
+     * @return boolean
+     */
     @Override
     public boolean equals(Object o){
         if (this == o)
@@ -78,6 +82,9 @@ public class Historico extends Registro{
         }
     }
 
+    /** 
+     * @return int
+     */
     @Override
     public int hashCode(){
         return Objects.hash(coeficiente,componentes) + super.hashCode(); 

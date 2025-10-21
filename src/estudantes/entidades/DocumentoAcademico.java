@@ -35,6 +35,10 @@ public class DocumentoAcademico extends Documento{
         return  autenticacao;
     }
 
+    /** 
+     * @param o
+     * @return boolean
+     */
     @Override
     public boolean equals(Object o){
         if (this == o)
@@ -54,6 +58,9 @@ public class DocumentoAcademico extends Documento{
         }
     }
 
+    /** 
+     * @return int
+     */
     @Override
     public int hashCode(){
         return Objects.hash(autenticacao) + super.hashCode(); 

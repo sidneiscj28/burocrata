@@ -42,6 +42,10 @@ public class Edital extends Norma{
         return responsaveis;
     }
 
+    /** 
+     * @param o
+     * @return boolean
+     */
     @Override
     public boolean equals(Object o){
         if (this == o)
@@ -64,6 +68,9 @@ public class Edital extends Norma{
         }
     }
 
+    /** 
+     * @return int
+     */
     @Override
     public int hashCode(){
         return Objects.hash(responsaveis) + super.hashCode(); //problema array

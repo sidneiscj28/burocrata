@@ -58,6 +58,10 @@ public class Norma extends DocumentoAdministrativo{
         return texto;
     }
 
+    /** 
+     * @param o
+     * @return boolean
+     */
     @Override
     public boolean equals(Object o){
         if (this == o)
@@ -80,6 +84,9 @@ public class Norma extends DocumentoAdministrativo{
         }
     }
 
+    /** 
+     * @return int
+     */
     @Override
     public int hashCode(){
         return Objects.hash(numero, valido, texto) + super.hashCode(); 

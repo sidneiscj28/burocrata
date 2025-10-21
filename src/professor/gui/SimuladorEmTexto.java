@@ -80,6 +80,9 @@ public class SimuladorEmTexto {
         tarefaAtualizar.cancel();
     }
     
+    /** 
+     * @param args
+     */
     public static void main(String[] args) {
         tarefaSimular = new TimerTask() {
             @Override

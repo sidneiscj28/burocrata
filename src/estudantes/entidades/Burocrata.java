@@ -20,15 +20,18 @@ import professor.entidades.*;
  * @author Rafaela de Menezes e Sidnei Correia Junior
  */
 public class Burocrata {
+    /** Nível de estresse do burocrata, que aumenta com certas ações. */
     private int estresse = 0;
+    /** A mesa de trabalho do burocrata, onde os processos são organizados. */
     private Mesa mesa;
+    /** A instância da universidade, que dá acesso aos montes de documentos e à secretaria. */
     private Universidade universidade;
 
     /**
      * Construtor de Burocrata.
      * 
-     * @param m mesa com os processos
-     * @param u universidade com os montes dos cursos e a secretaria
+     * @param m A mesa com os processos a serem trabalhados.
+     * @param u A universidade com os montes de documentos e a secretaria.
      */
     public Burocrata(Mesa m, Universidade u) {
         this.mesa = m;
@@ -70,11 +73,11 @@ public class Burocrata {
      *      professor.entidades.CodigoCurso)
      */
     public void trabalhar() {
-        // Itera sobre todos os códigos de curso existentes na enumeração CodigoCurso
+        // Itera sobre todos os cursos para encontrar documentos para processar
         for (CodigoCurso codigo : CodigoCurso.values()) {
-            // Pega os documentos do monte do curso atual
+            // Pega uma cópia dos documentos do monte do curso atual
             Documento[] documentos = universidade.pegarCopiaDoMonteDoCurso(codigo);
-            // Se não houver documentos neste monte, passa para o próximo curso
+            // Se não houver documentos, pula para o próximo curso
             if (documentos.length == 0) {
                 continue;
             }
@@ -83,16 +86,12 @@ public class Burocrata {
             // Tenta encontrar um processo vago na mesa para adicionar o documento
             loopProcesso: for (int i = 0; i < mesa.getProcessos().length; i++) {
                 Processo proc = mesa.getProcesso(i);
-
-                /*
-                 * String para verificar se o primeiro documento do processo é adm
-                 * caso for não incluirá Academicos
-                 * Serve para situação oposta
-                 */
-                String temDocAdm = "";
                 
-                if (proc != null) { // Verifica se o processo existe (não foi despachado)
+                // Variável para tentar garantir que um processo tenha apenas documentos do mesmo tipo (Adm. ou Acad.)
+                String temDocAdm = "";
 
+                if (proc != null) { // Verifica se o processo existe (não foi despachado)
+                    // REGRA: Despacho imediato para Portarias ou Editais com 100+ páginas.
                     for (Documento docs: documentos){
                         if (doc.getClass().getSimpleName().equals("Portaria") || 
                             doc.getClass().getSimpleName().equals("Edital") &&
@@ -105,7 +104,7 @@ public class Burocrata {
                             }
                     }
                     
-
+                    // REGRA: Se todos os documentos no monte forem Atas, o processo não é montado com eles
                     int contador = 0;
                     for(Documento docs: documentos){
                         if (getDocumentoCategoria(docs).equals("Ata")){
@@ -114,10 +113,11 @@ public class Burocrata {
                     }
 
                     if (contador == documentos.length){
-                        break;
+                        break; // Sai do loop do processo, não monta com apenas Atas
                     }
 
-                    // REGRA 06
+                    // REGRA 06: Verifica se o monte contém documentos que permitem o despacho de um Diploma
+                    // Verifica se o monte contém documentos que permitem o despacho de um Diploma.
                     boolean podeDespachar = false;
                     for (Documento docs: documentos){
                         int temDiploma = 0;
@@ -137,6 +137,7 @@ public class Burocrata {
                         }
                     }
                     
+                    // Se as condições não forem atendidas, remove os Diplomas do monte para evitar que sejam processados
                     for (Documento docs: documentos){
                         if (!podeDespachar){
                             if (getDocumentoCategoria(docs).equals("Diploma")){
@@ -145,11 +146,8 @@ public class Burocrata {
                         }
                     }
 
-                    // FIM DA REGRA 06
-
-
-
-                    // verifica se a String temDocAdm já foi inicializada (primeira verificação)
+                    // REGRA: Não misturar documentos Administrativos e Acadêmicos
+                    // Define o tipo do processo com base no primeiro documento
                     if (temDocAdm.equals("")){
                         // caso a String não tenha nada ainda, a primeira verificação ficará salva nela
                         if (getDocumentoCategoria(doc).equals("DocumentoAdministrativo")){
@@ -159,8 +157,7 @@ public class Burocrata {
                         }
                     }
                     
-                    // loop para filtrar documentos
-                    // separando removendo docAdm ou Academico do mesmo processo
+                    // Remove do monte os documentos que não correspondem ao tipo definido para o processo
                     for (Documento docs : universidade.pegarCopiaDoMonteDoCurso(codigo)){
                         if (temDocAdm.equals("Sim")){
                             if (getDocumentoCategoria(docs).equals("DocumentoAcademico")){
@@ -171,50 +168,10 @@ public class Burocrata {
                                universidade.removerDocumentoDoMonteDoCurso(docs, codigo);
                             }
                         }
-
-                        
-                        //começo regra 5
-                    //     Set<String> destinatario= new HashSet<>();
-                    // if (doc.getClass().getSimpleName().equals("Circular")){
-                    //     Circular circular = (Circular) doc;
-
-                    //     for (String dest : circular.getDestinatarios()){
-                    //         destinatario.add(dest);
-                    //     }
-                    // }
-
-                    // if (doc.getClass().getSimpleName().equals("Oficio")){
-                    //     Oficio oficio = (Oficio) doc;
-                    //         System.out.println(oficio.getDestinatario());
-                    //     if(destinatario.contains(oficio.getDestinatario())){
-                    //         System.out.println("mesmos destinatarios");
-                    //     }else{
-                    //         System.out.println("destinatarios diferentes");
-                    //     }
-                        
                     }
-                    //final regra 5
-                                     
-                    
 
-                    // ia - REMOVER ESTE BLOCO QUANDO NÃO FOR MAIS NECESSÁRIO
-                    // ESTE BLOCO É PARA EXIBIR OS DOCUMENTOS DE CADA PROCESSO
-                    // TUDO QUE FICA PRINTADO DENTRO DESSES "=====" É UM PROCESSO DIFERENTE
-                
-                    // System.out.println("===============================");
-                    
-                    // for (Documento docs : universidade.pegarCopiaDoMonteDoCurso(codigo)){
-                    //     System.out.print("Curso: " + codigo + " => ");
-                    //     System.out.println(docs.getClass().getSimpleName());
-                    //     System.out.println("Páginas: " + doc.getPaginas()); 
-
-                    // }
-                    // System.out.println("===============================");
-                  
-                  
-                    // ==============================================================
-
-                    // REGRA 07 
+                    // REGRA 07: Garante que todos os Atestados em um processo sejam da mesma categoria
+                    // Garante que todos os Atestados em um processo sejam da mesma categoria.
                     String primeiraCategoria = "";
 
                     for (Documento docs : universidade.pegarCopiaDoMonteDoCurso(codigo)){
@@ -224,6 +181,7 @@ public class Burocrata {
                         }
                     }
 
+                    // Remove do monte os Atestados de categorias diferentes da primeira encontrada
                     for (Documento docs : universidade.pegarCopiaDoMonteDoCurso(codigo)){
                         if (!primeiraCategoria.equals("")){
                            if (docs instanceof Atestado) {
@@ -235,46 +193,31 @@ public class Burocrata {
                         }
                     }
 
-                    // FIM DA REGRA 07
-
-                  
+                    // Adiciona o documento principal ao processo, despacha e o remove do monte original
                     proc.adicionarDocumento(doc);
                     universidade.despachar(proc);
                     universidade.removerDocumentoDoMonteDoCurso(doc, codigo);
-
-                 break;
+                    
+                 break; // Sai do loop de processos, pois um documento já foi usado
                 }
-                // Pega os documentos do monte do curso atual
-                /*
-                 * Documento[] documentos = universidade.pegarCopiaDoMonteDoCurso(codigo);
-                 * 
-                 * // Se não houver documentos neste monte, passa para o próximo curso
-                 * if (documentos.length == 0) {
-                 * return;
-                 * }
-                 * 
-                 * // Pega o primeiro documento da lista (o mais recente)
-                 * Documento doc = documentos[0];
-                 * 
-                 * // Tenta encontrar um processo vago na mesa para adicionar o documento
-                 * for (int i = 0; i < mesa.getProcessos().length; i++) {
-                 * Processo proc = mesa.getProcesso(i);
-                 * if (proc != null) { // Verifica se o processo existe (não foi despachado)
-                 * universidade.removerDocumentoDoMonteDoCurso(doc, codigo);
-                 * proc.adicionarDocumento(doc);
-                 * universidade.despachar(proc);
-                 * break; // Sai do loop dos processos, pois já usou o documento
-                 * }
-                 * }
-                 */
             }
+            // Atualiza as estatísticas da universidade após o trabalho.
             universidade.contarDocumentosCriados();
             universidade.contarDocumentosDespachados();
             universidade.contarProcessosDespachados();
             universidade.contarDocumentosPerdidos();
         }
     }
-
+    
+    /**
+     * Método auxiliar para obter a categoria principal de um documento (ex: DocumentoAcademico).
+     * <p>
+     * Ele navega na hierarquia de classes do documento até encontrar a classe que herda
+     * diretamente de {@link Documento}, retornando seu nome.
+     * 
+     * @param doc O documento a ser analisado.
+     * @return O nome da categoria principal do documento ou "Category Not Found" se não for encontrada.
+     */
     // ia
     public static String getDocumentoCategoria(Documento doc) {
         // Start at the runtime class of the object (e.g., Portaria.class)
@@ -296,27 +239,24 @@ public class Burocrata {
     }
 
     /**
-     * Método getEstresse
+     * Retorna o nível de estresse atual do burocrata.
      * 
-     * @return
+     * @return O valor inteiro do estresse.
      */
     public int getEstresse() {
         return estresse;
     }
 
     /**
-     * Método estressar
-     * 
-     * @return
+     * Aumenta o nível de estresse do burocrata em 1.
      */
     public void estressar() {
         estresse++;
     }
 
     /**
-     * Método estressarMuito
-     * 
-     * @return
+     * Aumenta o nível de estresse do burocrata em 10.
+     * Usado para situações de maior impacto.
      */
     public void estressarMuito() {
         estresse += 10;

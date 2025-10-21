@@ -49,6 +49,10 @@ public class Plano extends DocumentoAcademico{
         return planejamento;
     }
 
+    /** 
+     * @param o
+     * @return boolean
+     */
     @Override
     public boolean equals(Object o){
         if (this == o)
@@ -71,6 +75,9 @@ public class Plano extends DocumentoAcademico{
         }
     }
 
+    /** 
+     * @return int
+     */
     @Override
     public int hashCode(){
         return Objects.hash(responsavel,planejamento) + super.hashCode(); 

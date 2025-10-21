@@ -21,6 +21,10 @@ public class DocumentoAdministrativo extends Documento{
         super(criador, codigo, paginas);
     }
 
+    /** 
+     * @param o
+     * @return boolean
+     */
     @Override
     public boolean equals(Object o){
         if (this == o)
@@ -39,6 +43,9 @@ public class DocumentoAdministrativo extends Documento{
         }
     }
 
+    /** 
+     * @return int
+     */
     @Override
     public int hashCode(){
         return super.hashCode(); 

@@ -50,6 +50,10 @@ public class Mesa {
         return processos;
     }
     
+    /** 
+     * @param processo
+     * @return int
+     */
     protected int verificarOrigem(Processo processo){
         for(int i = 0; i < 5; i++){
             if(processos[i] == processo){
@@ -67,6 +71,9 @@ public class Mesa {
         }
     }
     
+    /** 
+     * @param posicao
+     */
     protected void removerProcessoDaMesa(int posicao){
         processos[posicao] = null;
     }

@@ -60,6 +60,10 @@ public class Ata extends Documento{
     public String[] getPresentes(){
         return presentes;
     }
+    /** 
+     * @param o
+     * @return boolean
+     */
     @Override
     public boolean equals(Object o){
         if (this == o)
@@ -82,6 +86,9 @@ public class Ata extends Documento{
         }
     }
 
+    /** 
+     * @return int
+     */
     @Override
     public int hashCode(){
         return 2;

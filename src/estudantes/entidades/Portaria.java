@@ -42,6 +42,10 @@ public class Portaria extends Norma{
         return anoInicio;
     }
 
+    /** 
+     * @param o
+     * @return boolean
+     */
     @Override
     public boolean equals(Object o){
         if (this == o)
@@ -65,6 +69,9 @@ public class Portaria extends Norma{
         }
     }
 
+    /** 
+     * @return int
+     */
     @Override
     public int hashCode(){
         return Objects.hash(anoInicio) + super.hashCode(); 

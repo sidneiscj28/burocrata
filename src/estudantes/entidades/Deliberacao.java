@@ -37,6 +37,10 @@ public class Deliberacao extends  DocumentoAdministrativo{
         return texto;
     }
 
+    /** 
+     * @param o
+     * @return boolean
+     */
     @Override
     public boolean equals(Object o){
         if (this == o)
@@ -57,6 +61,9 @@ public class Deliberacao extends  DocumentoAdministrativo{
         }
     }
 
+    /** 
+     * @return int
+     */
     @Override
     public int hashCode(){
         return Objects.hash(texto) + super.hashCode(); 

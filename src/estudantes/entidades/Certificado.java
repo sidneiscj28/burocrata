@@ -42,6 +42,10 @@ public class Certificado extends Registro{
         return descricao;
     }
 
+    /** 
+     * @param o
+     * @return boolean
+     */
     @Override
     public boolean equals(Object o){
         if (this == o)
@@ -65,6 +69,9 @@ public class Certificado extends Registro{
         }
     }
 
+    /** 
+     * @return int
+     */
     @Override
     public int hashCode(){
         return Objects.hash(descricao) + super.hashCode(); 
