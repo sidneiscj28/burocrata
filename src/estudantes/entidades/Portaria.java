@@ -56,7 +56,7 @@ public class Portaria extends Norma{
             return false;
         Portaria p = (Portaria) o;
         if (Objects.equals(this.getCriador(), p.getCriador()) && 
-            Objects.equals(this.getCodigo(), p.getCodigo()) && 
+            Objects.equals(this.getCodigoCurso(), p.getCodigoCurso()) && 
             this.getPaginas() == p.getPaginas() &&
             this.getNumero() == p.getNumero() &&
             this.getValido() == p.getValido() &&

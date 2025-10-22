@@ -51,7 +51,7 @@ public class Deliberacao extends  DocumentoAdministrativo{
             return false;
         Deliberacao p = (Deliberacao) o;
         if (Objects.equals(this.getCriador(), p.getCriador()) && 
-            Objects.equals(this.getCodigo(), p.getCodigo()) && 
+            Objects.equals(this.getCodigoCurso(), p.getCodigoCurso()) && 
             this.getPaginas() == p.getPaginas() &&
             Objects.equals(this.getTexto(), p.getTexto())
             ) {

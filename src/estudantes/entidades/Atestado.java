@@ -83,7 +83,7 @@ public class Atestado extends Registro{
             return false;
         Atestado p = (Atestado) o;
         if (Objects.equals(this.getCriador(), p.getCriador()) && 
-            Objects.equals(this.getCodigo(), p.getCodigo()) && 
+            Objects.equals(this.getCodigoCurso(), p.getCodigoCurso()) && 
             this.getPaginas() == p.getPaginas() &&
             Objects.equals(this.getEstudante(), p.getEstudante()) &&
             this.getMatricula() == p.getMatricula() &&

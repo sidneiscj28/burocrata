@@ -1,6 +1,8 @@
 package estudantes.entidades;
 
 import java.util.Objects;
+import professor.entidades.CodigoCurso;
+
  /**
  * Classe que representa uma deliberação do tipo ofício.
  * <br><br>
@@ -8,8 +10,6 @@ import java.util.Objects;
  * 
  * @author Rafaela de Menezes e Sidnei Correia Junior
  */
-import professor.entidades.CodigoCurso;
-
 public class Oficio extends Deliberacao{
     private String destinatario;
     /**
@@ -52,7 +52,7 @@ public class Oficio extends Deliberacao{
             return false;
         Oficio p = (Oficio) o;
         if (Objects.equals(this.getCriador(), p.getCriador()) && 
-            Objects.equals(this.getCodigo(), p.getCodigo()) && 
+            Objects.equals(this.getCodigoCurso(), p.getCodigoCurso()) && 
             this.getPaginas() == p.getPaginas() &&
             Objects.equals(this.getTexto(), p.getTexto()) &&
             Objects.equals(this.getDestinatario(), p.getDestinatario())

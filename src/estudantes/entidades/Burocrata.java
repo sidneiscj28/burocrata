@@ -98,6 +98,7 @@ public class Burocrata {
                             doc.getPaginas() >= 100                            
                             ){
                                 proc.adicionarDocumento(docs);
+                                universidade.removerDocumentoDoMonteDoCurso(docs, docs.getCodigoCurso());
                                 universidade.despachar(proc);
 
                                 break loopProcesso;
@@ -202,10 +203,9 @@ public class Burocrata {
                 }
             }
             // Atualiza as estatísticas da universidade após o trabalho.
-            universidade.contarDocumentosCriados();
-            universidade.contarDocumentosDespachados();
-            universidade.contarProcessosDespachados();
-            universidade.contarDocumentosPerdidos();
+            System.out.println("Monte da CC" + universidade.pegarCopiaDoMonteDoCurso(CodigoCurso.GRADUACAO_CIENCIA_DA_COMPUTACAO).length);
+            System.out.println("Monte da ES" + universidade.pegarCopiaDoMonteDoCurso(CodigoCurso.GRADUACAO_ENGENHARIA_SOFTWARE).length);
+            
         }
     }
     

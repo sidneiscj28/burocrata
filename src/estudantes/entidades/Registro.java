@@ -64,7 +64,7 @@ public class Registro extends DocumentoAcademico{
             return false;
         Registro p = (Registro) o;
         if (Objects.equals(this.getCriador(), p.getCriador()) && 
-            Objects.equals(this.getCodigo(), p.getCodigo()) && 
+            Objects.equals(this.getCodigoCurso(), p.getCodigoCurso()) && 
             this.getPaginas() == p.getPaginas() &&
             this.getAutenticacao() == p.getAutenticacao() &&
             Objects.equals(this.getEstudante(), p.getEstudante()) &&

@@ -74,7 +74,7 @@ public class Ata extends Documento{
             return false;
         Ata p = (Ata) o;
         if (Objects.equals(this.getCriador(), p.getCriador()) && 
-            Objects.equals(this.getCodigo(), p.getCodigo()) && 
+            Objects.equals(this.getCodigoCurso(), p.getCodigoCurso()) && 
             this.getPaginas() == p.getPaginas() &&
             this.numero==p.numero &&
             this.texto.equals(p.texto) &&

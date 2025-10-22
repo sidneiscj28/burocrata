@@ -68,7 +68,7 @@ public class Historico extends Registro{
             return false;
         Historico p = (Historico) o;
         if (Objects.equals(this.getCriador(), p.getCriador()) && 
-            Objects.equals(this.getCodigo(), p.getCodigo()) && 
+            Objects.equals(this.getCodigoCurso(), p.getCodigoCurso()) && 
             this.getPaginas() == p.getPaginas() &&
             this.getAutenticacao() == p.getAutenticacao() &&
             Objects.equals(this.getEstudante(), p.getEstudante()) &&

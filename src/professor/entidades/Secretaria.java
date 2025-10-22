@@ -40,7 +40,7 @@ public class Secretaria {
         //graduação X pós-graduação
         boolean graduacao = false, posgraduacao = false;
         for(Documento doc : copiaDoProcesso){
-            if(doc.getCodigo().equals(CodigoCurso.POS_GRADUACAO_ENGENHARIA) || doc.getCodigo().equals(CodigoCurso.POS_GRADUACAO_ENGENHARIA_ELETRICA) || doc.getCodigo().equals(CodigoCurso.POS_GRADUACAO_ENGENHARIA_SOFTWARE)){
+            if(doc.getCodigoCurso().equals(CodigoCurso.POS_GRADUACAO_ENGENHARIA) || doc.getCodigoCurso().equals(CodigoCurso.POS_GRADUACAO_ENGENHARIA_ELETRICA) || doc.getCodigoCurso().equals(CodigoCurso.POS_GRADUACAO_ENGENHARIA_SOFTWARE)){
                 posgraduacao = true;
             }else{
                 graduacao = true;
